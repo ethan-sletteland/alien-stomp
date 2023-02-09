@@ -1,6 +1,6 @@
 # Alien Stomp
 
-> A Phaser 3 games with TypeScript and modern frontend tooling.
+> A Phaser 3 game with TypeScript and modern frontend tooling.
 
 Jump on aliens and try for a high score.
 
