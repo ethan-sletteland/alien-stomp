@@ -2,7 +2,7 @@
 
 > A Phaser 3 game with TypeScript and modern frontend tooling.
 
-Jump on aliens and try for a high score.
+Jump on aliens and try for a high score. Playable game at [https://ethan.slette.land/alien-stomp/](https://ethan.slette.land/alien-stomp/).
 
 Resources from:
 
