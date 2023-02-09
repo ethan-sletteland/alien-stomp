@@ -5,6 +5,7 @@ export default class CharacterController {
   private attackButton: Phaser.Input.Keyboard.Key;
   private jumping = false;
   private damaging = false;
+  // decided to go with squishing instead of a ray gun
   private attacking = false;
   private speed = 150;
   health = 10;
