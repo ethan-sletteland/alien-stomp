@@ -1,0 +1,17 @@
+{
+  "slimeWalk1.png": {
+    "filename": "slimeWalk1",
+    "frame": { "x": "52", "y": "125", "w": "50", "h": "28" },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": "0", "y": "0", "w": "246", "h": "201" },
+    "sourceSize": { "w": 246, "h": 201 },
+    "pivot": { "x": 0.5, "y": 0.5 }
+  },
+  "meta": {
+    "image": "enemies_spritesheet.png",
+    "format": "RGBA8888",
+    "size": { "w": 128, "h": 32 },
+    "scale": "1"
+  }
+}

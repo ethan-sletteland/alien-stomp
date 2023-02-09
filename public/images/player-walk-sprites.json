@@ -1,0 +1,99 @@
+{
+  "frames": [
+    {
+      "filename": "p1_walk1",
+      "frame": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk2",
+      "frame": { "x": 73, "y": 0, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk3",
+      "frame": { "x": 0, "y": 98, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk4",
+      "frame": { "x": 73, "y": 98, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk5",
+      "frame": { "x": 146, "y": 0, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk6",
+      "frame": { "x": 146, "y": 98, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk7",
+      "frame": { "x": 219, "y": 0, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk8",
+      "frame": { "x": 219, "y": 98, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk9",
+      "frame": { "x": 0, "y": 196, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk10",
+      "frame": { "x": 73, "y": 196, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    },
+    {
+      "filename": "p1_walk11",
+      "frame": { "x": 146, "y": 196, "w": 72, "h": 97 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 72, "h": 97 },
+      "sourceSize": { "w": 72, "h": 97 }
+    }
+  ],
+  "meta": {
+    "app": "https://www.leshylabs.com/apps/sstool/",
+    "version": "Leshy SpriteSheet Tool v0.8.4",
+    "image": "player-walk-spritesheet.png",
+    "size": { "w": 291, "h": 293 },
+    "scale": 1
+  }
+}
