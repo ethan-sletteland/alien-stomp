@@ -156,6 +156,13 @@ export default class CharacterController {
   }
 
   startFollowingPlayer() {
-    this.scene.cameras.main.startFollow(this.sprite);
+    this.scene.cameras.main.startFollow(
+      this.sprite,
+      false,
+      undefined,
+      undefined,
+      0,
+      50
+    );
   }
 }

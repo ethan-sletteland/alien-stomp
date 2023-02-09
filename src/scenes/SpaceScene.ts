@@ -114,7 +114,9 @@ export default class ForrestScene extends Phaser.Scene {
       }
 
       if (this.enemyControllers.filter((e) => !e.dead).length < 3) {
-        const newEnemy = new EnemyController(this, 100, 400);
+        // spawn on random edge
+        const spawn = Date.now() % 2 === 1 ? 10 : 700;
+        const newEnemy = new EnemyController(this, spawn, 400);
         this.enemyControllers.push(newEnemy);
         this.physics.add.collider(newEnemy.sprite, this.ground);
       }
