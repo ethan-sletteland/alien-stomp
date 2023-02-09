@@ -2,17 +2,19 @@ export default class CharacterController {
   sprite;
   private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   private jumpButton: Phaser.Input.Keyboard.Key;
-  private attackButton: Phaser.Input.Keyboard.Key;
+  // private attackButton: Phaser.Input.Keyboard.Key;
   private jumping = false;
   private damaging = false;
   // decided to go with squishing instead of a ray gun
-  private attacking = false;
+  // private attacking = false;
   private speed = 150;
   health = 10;
   healthText: any;
   score = 0;
   scoreText: any;
   gameOver = false;
+  playerDamage: any;
+  playerDeath: any;
 
   constructor(private scene: Phaser.Scene, x: number, y: number) {
     this.sprite = scene.physics.add.sprite(x, y, "playersprite");
@@ -20,12 +22,14 @@ export default class CharacterController {
     this.jumpButton = scene.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
     );
-    this.attackButton = scene.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.E
-    );
+    // this.attackButton = scene.input.keyboard.addKey(
+    //   Phaser.Input.Keyboard.KeyCodes.E
+    // );
     this.sprite.setBounce(0.2);
     this.sprite.body.setGravityY(300);
     this.sprite.setCollideWorldBounds(true);
+    this.playerDamage = this.scene.sound.add("playerDamage");
+    this.playerDeath = this.scene.sound.add("playerDeath");
 
     this.healthText = this.scene.add
       .text(16, 16, `health: ${this.health}`, {
@@ -119,17 +123,17 @@ export default class CharacterController {
     if (this.sprite.body.onFloor()) {
       this.jumping = false;
     }
-    if (this.attackButton.isDown) {
-      this.attacking = true;
-      this.sprite.anims.play("attack");
-    } else {
-      this.attacking = false;
-    }
+    // if (this.attackButton.isDown) {
+    //   this.attacking = true;
+    //   this.sprite.anims.play("attack");
+    // } else {
+    //   this.attacking = false;
+    // }
   }
 
   damage() {
     if (this.health <= 0 || this.damaging) return;
-    this.scene.playerDamage.play();
+    this.playerDamage.play();
     this.damaging = true;
     this.sprite.anims.play("damage", true);
     this.health -= 1;
@@ -139,7 +143,7 @@ export default class CharacterController {
       this.damaging = false;
     }, 1000);
     if (!this.health) {
-      this.scene.playerDeath.play();
+      this.playerDeath.play();
       const particles = this.scene.add.particles("red");
       const emitter = particles.createEmitter({
         speed: 100,

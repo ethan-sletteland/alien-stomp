@@ -13,7 +13,7 @@ export default class EnemyController {
     this.direction = 1;
   }
 
-  update(time: number, delta: number) {
+  update(_time: number, delta: number) {
     this.sprite.x += this.velocityX * delta * this.direction;
     this.sprite.flipX = this.direction === 1 ? true : false;
 
