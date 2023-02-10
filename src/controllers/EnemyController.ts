@@ -42,7 +42,10 @@ export default class EnemyController {
       ) {
         this.enemyDeath.play();
         this.dead = true;
-        this.sprite.destroy();
+        this.velocityX = 0;
+        this.sprite.y = this.sprite.y + 10;
+        this.sprite.setFrame("slimeDead");
+        window.setTimeout(() => this.sprite.destroy(), 1000);
         // let's get a little bounce
         this.characterController.sprite.setVelocityY(-200);
         this.characterController.score += 10;
