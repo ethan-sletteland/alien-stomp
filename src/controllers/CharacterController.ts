@@ -89,10 +89,10 @@ export default class CharacterController {
   }
 
   update() {
-    this.healthText.x = this.sprite.body.x - 200;
-    this.healthText.y = this.sprite.body.y - 200;
-    this.scoreText.x = this.sprite.body.x - 200;
-    this.scoreText.y = this.sprite.body.y - 200 + 32;
+    this.healthText.x = this.sprite.body.x - 300;
+    this.healthText.y = this.sprite.body.y - 300;
+    this.scoreText.x = this.sprite.body.x - 300;
+    this.scoreText.y = this.sprite.body.y - 300 + 32;
 
     this.scoreText.setText(`score: ${this.score}`);
 
