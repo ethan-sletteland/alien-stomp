@@ -60,7 +60,7 @@ export default class ForrestScene extends Phaser.Scene {
   create() {
     const music = this.sound.add("theme");
     this.enemyDeath = this.sound.add("enemyDeath");
-    music.play();
+    music.play({ loop: true, volume: 0.7 });
 
     this.enemyControllers = [];
     this.add.image(400, 300, "sky");
