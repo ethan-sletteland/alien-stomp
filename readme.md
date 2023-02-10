@@ -12,6 +12,12 @@ Resources from:
 
 [juhani.junkala@musician.org](https://opengameart.org/content/5-chiptunes-action)
 
+Helful Tools:
+
+Atlasses compiled with [leshylabs](https://www.leshylabs.com/apps/sstool/)
+
+Quickstart vie [phaser3-typescript-vite-template](https://github.com/twopmstudios/phaser3-typescript-vite-template)
+
 ## Prerequisites
 
 You'll need [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed.
