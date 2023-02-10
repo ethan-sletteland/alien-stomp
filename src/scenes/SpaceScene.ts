@@ -59,7 +59,6 @@ export default class ForrestScene extends Phaser.Scene {
 
   create() {
     const music = this.sound.add("theme");
-    this.enemyDeath = this.sound.add("enemyDeath");
     music.play({ loop: true, volume: 0.7 });
 
     this.enemyControllers = [];
@@ -82,44 +81,27 @@ export default class ForrestScene extends Phaser.Scene {
 
     const enemiesX = [200, 500, 700];
     enemiesX.forEach((e, i) => {
-      this.enemyControllers.push(new EnemyController(this, e, 500));
+      this.enemyControllers.push(
+        new EnemyController(this, e, 500, this.characterController)
+      );
       this.physics.add.collider(this.enemyControllers[i].sprite, this.ground);
     });
   }
 
   update(time: number, delta: number) {
     this.characterController.update();
-
-    this.enemyControllers.forEach((e) => {
-      if (e.dead) return;
-      if (
-        Phaser.Geom.Intersects.RectangleToRectangle(
-          this.characterController.sprite.getBounds(),
-          e.sprite.getBounds()
-        )
-      ) {
-        // Check if the player is above the enemy
-        if (this.characterController.sprite.y < e.sprite.y - 20) {
-          if (this.enemyDeath) this.enemyDeath.play();
-          e.dead = true;
-          e.sprite.destroy();
-          // let's get a little bounce
-          this.characterController.sprite.setVelocityY(-200);
-          this.characterController.score += 10;
-        } else {
-          this.characterController.damage();
-        }
-      }
-
-      if (this.enemyControllers.filter((e) => !e.dead).length < 3) {
-        // spawn on random edge
-        const spawn = Date.now() % 2 === 1 ? 10 : 700;
-        const newEnemy = new EnemyController(this, spawn, 400);
-        this.enemyControllers.push(newEnemy);
-        this.physics.add.collider(newEnemy.sprite, this.ground);
-      }
-
-      e.update(time, delta);
-    });
+    this.enemyControllers.forEach((e) => e.update(time, delta));
+    if (this.enemyControllers.filter((e) => !e.dead).length < 3) {
+      // spawn on random edge
+      const spawn = Date.now() % 2 === 1 ? 10 : 700;
+      const newEnemy = new EnemyController(
+        this,
+        spawn,
+        400,
+        this.characterController
+      );
+      this.enemyControllers.push(newEnemy);
+      this.physics.add.collider(newEnemy.sprite, this.ground);
+    }
   }
 }
