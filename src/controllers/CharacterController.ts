@@ -4,17 +4,17 @@ export default class CharacterController {
   private jumpButton: Phaser.Input.Keyboard.Key;
   // private attackButton: Phaser.Input.Keyboard.Key;
   private jumping = false;
-  private damaging = false;
   // decided to go with squishing instead of a ray gun
   // private attacking = false;
   private speed = 150;
   health = 10;
-  healthText: any;
+  healthText: Phaser.GameObjects.Text;
   score = 0;
-  scoreText: any;
+  scoreText: Phaser.GameObjects.Text;
+  stunned = false;
   gameOver = false;
-  playerDamage: any;
-  playerDeath: any;
+  playerDamage: Phaser.Sound.BaseSound;
+  playerDeath: Phaser.Sound.BaseSound;
 
   constructor(private scene: Phaser.Scene, x: number, y: number) {
     this.sprite = scene.physics.add.sprite(x, y, "playersprite");
@@ -96,22 +96,18 @@ export default class CharacterController {
 
     this.scoreText.setText(`score: ${this.score}`);
 
-    // if (this.attacking) {
-    //   return;
-    // }
-
     this.sprite.setVelocityX(0);
 
     if (this.cursors.left?.isDown) {
       this.sprite.setVelocityX(-this.speed);
       this.sprite.flipX = true;
-      if (!this.jumping) this.sprite.anims.play("run", true);
+      if (!this.jumping && !this.stunned) this.sprite.anims.play("run", true);
     } else if (this.cursors.right?.isDown) {
       this.sprite.setVelocityX(this.speed);
       this.sprite.flipX = false;
-      if (!this.jumping) this.sprite.anims.play("run", true);
+      if (!this.jumping && !this.stunned) this.sprite.anims.play("run", true);
     } else {
-      if (!this.jumping && !this.damaging) this.sprite.anims.play("idle", true);
+      if (!this.jumping && !this.stunned) this.sprite.anims.play("idle", true);
     }
 
     if (this.jumpButton.isDown && !this.jumping) {
@@ -132,15 +128,16 @@ export default class CharacterController {
   }
 
   damage() {
-    if (this.health <= 0 || this.damaging) return;
+    if (this.health <= 0 || this.stunned) return;
     this.playerDamage.play();
-    this.damaging = true;
+    this.stunned = true;
+    this.sprite.setVelocityY(-200);
     this.sprite.anims.play("damage", true);
     this.health -= 1;
     this.healthText.setText(`health: ${this.health}`);
 
     window.setTimeout(() => {
-      this.damaging = false;
+      this.stunned = false;
     }, 1000);
     if (!this.health) {
       this.playerDeath.play();

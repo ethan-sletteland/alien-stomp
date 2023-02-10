@@ -36,7 +36,10 @@ export default class EnemyController {
       )
     ) {
       // Check if the player is above the enemy
-      if (this.characterController.sprite.y < this.sprite.y - 20) {
+      if (
+        this.characterController.sprite.y < this.sprite.y - 20 &&
+        !this.characterController.stunned
+      ) {
         this.enemyDeath.play();
         this.dead = true;
         this.sprite.destroy();
