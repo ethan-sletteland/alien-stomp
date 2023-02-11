@@ -1,16 +1,17 @@
+import SpaceScene from "../scenes/SpaceScene";
 import CharacterController from "./CharacterController";
 
 export default class EnemyController {
-  scene: Phaser.Scene;
-  sprite: Phaser.GameObjects.Sprite;
+  private scene: SpaceScene;
   private velocityX: number;
   private direction: number;
+  private enemyDeath: Phaser.Sound.BaseSound;
+  private characterController: CharacterController;
+  sprite: Phaser.GameObjects.Sprite;
   dead = false;
-  enemyDeath: any;
-  characterController: CharacterController;
 
   constructor(
-    scene: Phaser.Scene,
+    scene: SpaceScene,
     x: number,
     y: number,
     characterController: CharacterController
@@ -48,7 +49,7 @@ export default class EnemyController {
         window.setTimeout(() => this.sprite.destroy(), 1000);
         // let's get a little bounce
         this.characterController.sprite.setVelocityY(-200);
-        this.characterController.score += 10;
+        this.scene.hud.score += 10;
       } else {
         this.characterController.damage();
       }

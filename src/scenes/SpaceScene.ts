@@ -1,14 +1,16 @@
 import Phaser from "phaser";
 import CharacterController from "../controllers/CharacterController";
 import EnemyController from "../controllers/EnemyController";
+import { HUDController } from "../controllers/HUDController";
 
-export default class ForrestScene extends Phaser.Scene {
+export default class SpaceScene extends Phaser.Scene {
   characterController!: CharacterController;
   enemyControllers!: EnemyController[];
   ground!: Phaser.Physics.Arcade.StaticGroup;
   enemyDeath!: Phaser.Sound.BaseSound;
   playerDamage!: Phaser.Sound.BaseSound;
   playerDeath!: Phaser.Sound.BaseSound;
+  hud!: HUDController;
 
   constructor() {
     super("space-scene");
@@ -67,6 +69,8 @@ export default class ForrestScene extends Phaser.Scene {
     this.characterController = new CharacterController(this, 100, 100);
     this.characterController.startFollowingPlayer();
 
+    this.hud = new HUDController(this, 16, 16);
+
     this.ground = this.physics.add.staticGroup();
     for (let i = 0; i <= 12; i += 1) {
       this.ground.create(i * 70, 600, "mysprites", "dirt.png");
@@ -90,6 +94,7 @@ export default class ForrestScene extends Phaser.Scene {
 
   update(time: number, delta: number) {
     this.characterController.update();
+    this.hud.update();
     this.enemyControllers.forEach((e) => e.update(time, delta));
     if (this.enemyControllers.filter((e) => !e.dead).length < 3) {
       // spawn on random edge

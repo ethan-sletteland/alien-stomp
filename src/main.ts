@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 
-import ForrestScene from "./scenes/SpaceScene";
+import SpaceScene from "./scenes/SpaceScene";
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -13,7 +13,7 @@ const config: Phaser.Types.Core.GameConfig = {
       gravity: { y: 200 },
     },
   },
-  scene: [ForrestScene],
+  scene: [SpaceScene],
 };
 
 export default new Phaser.Game(config);
