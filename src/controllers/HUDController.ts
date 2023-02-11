@@ -64,6 +64,9 @@ export class HUDController {
     resetText.setInteractive({ useHandCursor: true });
 
     // Add a pointerdown event listener to the reset button
-    resetText.on("pointerdown", () => this.scene.scene.restart());
+    resetText.on("pointerdown", () => {
+      this.scene.music.stop();
+      this.scene.scene.restart();
+    });
   }
 }

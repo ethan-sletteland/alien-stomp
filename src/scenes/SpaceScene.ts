@@ -11,6 +11,7 @@ export default class SpaceScene extends Phaser.Scene {
   playerDamage!: Phaser.Sound.BaseSound;
   playerDeath!: Phaser.Sound.BaseSound;
   hud!: HUDController;
+  music!: Phaser.Sound.BaseSound;
 
   constructor() {
     super("space-scene");
@@ -60,8 +61,8 @@ export default class SpaceScene extends Phaser.Scene {
   }
 
   create() {
-    const music = this.sound.add("theme");
-    music.play({ loop: true, volume: 0.7 });
+    this.music = this.sound.add("theme");
+    this.music.play({ loop: true, volume: 0.7 });
 
     this.enemyControllers = [];
     this.add.image(400, 300, "sky");
