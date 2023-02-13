@@ -1,4 +1,3 @@
-import { Tweens } from "phaser";
 import SpaceScene from "../scenes/SpaceScene";
 
 export default class CharacterController {
@@ -7,7 +6,6 @@ export default class CharacterController {
   private jumpButton: Phaser.Input.Keyboard.Key;
   // private attackButton: Phaser.Input.Keyboard.Key;
   private jumping = false;
-  private dead = false;
   // decided to go with squishing instead of a ray gun
   // private attacking = false;
   private speed = 150;
@@ -105,10 +103,6 @@ export default class CharacterController {
     // } else {
     //   this.attacking = false;
     // }
-
-    // if (this.dead) {
-    //   this.sprite.alpha = this.sprite.alpha -= 0.1 * delta;
-    // }
   }
 
   damage() {
@@ -131,7 +125,6 @@ export default class CharacterController {
       //   blendMode: "ADD",
       // });
       // emitter.startFollow(this.sprite);
-      this.dead = true;
       this.scene.tweens.add({
         targets: this.sprite,
         alpha: 0,
