@@ -118,13 +118,13 @@ export default class CharacterController {
     }, 1000);
     if (!this.scene.hud.health) {
       this.playerDeath.play();
-      // const particles = this.scene.add.particles("red");
-      // const emitter = particles.createEmitter({
-      //   speed: 100,
-      //   scale: { start: 1, end: 0 },
-      //   blendMode: "ADD",
-      // });
-      // emitter.startFollow(this.sprite);
+      const particles = this.scene.add.particles("red");
+      const emitter = particles.createEmitter({
+        speed: 100,
+        scale: { start: 1, end: 0 },
+        blendMode: "ADD",
+      });
+      emitter.startFollow(this.sprite);
       this.scene.tweens.add({
         targets: this.sprite,
         alpha: 0,

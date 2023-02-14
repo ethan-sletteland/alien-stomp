@@ -1,7 +1,7 @@
 import SpaceScene from "../scenes/SpaceScene";
 
 export class HUDController {
-  private _health = 1;
+  private _health = 5;
   public get health() {
     return this._health;
   }
