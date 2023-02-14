@@ -1,3 +1,5 @@
+import SpaceScene from "../scenes/SpaceScene";
+
 export default class CharacterController {
   sprite;
   private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
@@ -7,16 +9,12 @@ export default class CharacterController {
   // decided to go with squishing instead of a ray gun
   // private attacking = false;
   private speed = 150;
-  health = 10;
-  healthText: Phaser.GameObjects.Text;
-  score = 0;
-  scoreText: Phaser.GameObjects.Text;
   stunned = false;
-  gameOver = false;
-  playerDamage: Phaser.Sound.BaseSound;
-  playerDeath: Phaser.Sound.BaseSound;
+  private playerDamage: Phaser.Sound.BaseSound;
+  private playerDeath: Phaser.Sound.BaseSound;
+  tweens!: Phaser.Tweens.Tween;
 
-  constructor(private scene: Phaser.Scene, x: number, y: number) {
+  constructor(private scene: SpaceScene, x: number, y: number) {
     this.sprite = scene.physics.add.sprite(x, y, "playersprite");
     this.cursors = scene.input.keyboard.createCursorKeys();
     this.jumpButton = scene.input.keyboard.addKey(
@@ -30,19 +28,6 @@ export default class CharacterController {
     this.sprite.setCollideWorldBounds(true);
     this.playerDamage = this.scene.sound.add("playerDamage");
     this.playerDeath = this.scene.sound.add("playerDeath");
-
-    this.healthText = this.scene.add
-      .text(16, 16, `health: ${this.health}`, {
-        fontSize: "32px",
-        color: "red",
-      })
-      .setDepth(1);
-    this.scoreText = this.scene.add
-      .text(16, 32, `score: ${this.score}`, {
-        fontSize: "32px",
-        color: "red",
-      })
-      .setDepth(1);
 
     this.scene.anims.create({
       key: "run",
@@ -88,14 +73,7 @@ export default class CharacterController {
     });
   }
 
-  update() {
-    this.healthText.x = this.sprite.body.x - 300;
-    this.healthText.y = this.sprite.body.y - 300;
-    this.scoreText.x = this.sprite.body.x - 300;
-    this.scoreText.y = this.sprite.body.y - 300 + 32;
-
-    this.scoreText.setText(`score: ${this.score}`);
-
+  update(_time: number, delta: number) {
     this.sprite.setVelocityX(0);
 
     if (this.cursors.left?.isDown) {
@@ -128,18 +106,17 @@ export default class CharacterController {
   }
 
   damage() {
-    if (this.health <= 0 || this.stunned) return;
+    if (this.scene.hud.health <= 0 || this.stunned) return;
     this.playerDamage.play();
     this.stunned = true;
     this.sprite.setVelocityY(-200);
     this.sprite.anims.play("damage", true);
-    this.health -= 1;
-    this.healthText.setText(`health: ${this.health}`);
+    this.scene.hud.health -= 1;
 
     window.setTimeout(() => {
       this.stunned = false;
     }, 1000);
-    if (!this.health) {
+    if (!this.scene.hud.health) {
       this.playerDeath.play();
       const particles = this.scene.add.particles("red");
       const emitter = particles.createEmitter({
@@ -148,10 +125,16 @@ export default class CharacterController {
         blendMode: "ADD",
       });
       emitter.startFollow(this.sprite);
+      this.scene.tweens.add({
+        targets: this.sprite,
+        alpha: 0,
+        duration: 500,
+        ease: "Linear",
+      });
 
       window.setTimeout(() => {
         this.scene.physics.pause();
-        this.gameOver = true;
+        this.scene.hud.gameOver();
       });
     }
   }
