@@ -73,7 +73,7 @@ export default class CharacterController {
     });
   }
 
-  update(_time: number, delta: number) {
+  update() {
     this.sprite.setVelocityX(0);
 
     if (this.cursors.left?.isDown) {
